@@ -6,6 +6,7 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -24,6 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
+   // protected static ?string $recordTitleAttribute = 'name';
+   
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -33,29 +36,31 @@ class UserResource extends Resource
             ->schema([
 
                 Section::make('Informações do usuário')
-                ->description('The items you have selected for purchase')
-                ->icon('heroicon-m-shopping-bag')
+                ->description('')
+                ->icon('heroicon-s-user')
                 ->schema([
 
                     TextInput::make('name')->autofocus()->required()->placeholder('Fausto Cananga')->label('Nome'),
 
                     TextInput::make('email')->email()->required()->placeholder('faustocananga51@gmail.com'),
 
+                    FileUpload::make('imagem')->image(),
+
                     Toggle::make('activo')->default(true),
                 ])
 
                 
-            ])
+            ]);
            
             
-            ;
+            
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                ImageColumn::make('imagem')->label('Imagem')->circular(),
+                ImageColumn::make('imagem')->label('Imagem')->circular()->overlap(2)->wrap(),
 
                 TextColumn::make('name')->searchable()->sortable()->label('Nome'),
 
@@ -69,9 +74,10 @@ class UserResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make()->label('Editar'),
             ])
-            ->bulkActions([
+            ->bulkActions([ 
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()->label('Apagar Selecionados'),
+
                     Tables\Actions\BulkAction::make('Desactivar')
                     ->color('warning')
                     ->requiresConfirmation()
@@ -82,11 +88,6 @@ class UserResource extends Resource
                         ->title('Salvo com sucesso')
                         ->success()
                         ->send())
-                
-                
-                
-                
-                
                     ])->label('Opções'),
             ]);
     }
