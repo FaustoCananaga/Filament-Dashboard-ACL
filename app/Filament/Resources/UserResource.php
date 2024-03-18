@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
+use Filament\Actions\SelectAction;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
@@ -17,7 +18,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,12 +28,13 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
-    protected static ?int $navigationSort = 2;
-    protected static ?string $navigationGroup ='External';
+    protected static ?string $navigationLabel ='Utilizador';
+   // protected static ?int $navigationSort = 2;
+   // protected static ?string $navigationGroup ='External';
    // protected static ?string $recordTitleAttribute = 'name';
    
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
@@ -42,11 +46,14 @@ class UserResource extends Resource
                 ->icon('heroicon-s-user')
                 ->schema([
 
-                    TextInput::make('name')->autofocus()->required()->placeholder('Fausto Cananga')->label('Nome'),
+                    TextInput::make('name')->autofocus()->required()->placeholder('Digite o seu nome')->label('Nome'),
 
-                    TextInput::make('email')->email()->required()->placeholder('faustocananga51@gmail.com'),
+                    TextInput::make('email')->email()->required()->placeholder('Digite o seu email'),
 
-                    FileUpload::make('imagem')->image(),
+                    
+                    FileUpload::make('imagem')->image()->placeholder('Carregar imagem...'),
+
+                    TextInput::make('password')->password()->required()->placeholder('Digite a Senha'),
 
                     Toggle::make('activo')->default(true),
                 ])
@@ -68,6 +75,8 @@ class UserResource extends Resource
 
                 TextColumn::make('email')->searchable()->sortable()->label('Email'),
 
+                TextColumn::make('genero')->searchable()->sortable()->label('Genero'),
+
                 IconColumn::make('activo')->boolean()->label('Status')
             ])
             ->filters([
@@ -80,6 +89,7 @@ class UserResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()->label('Apagar Selecionados'),
 
+                    /*  
                     Tables\Actions\BulkAction::make('Desactivar')
                     ->color('warning')
                     ->requiresConfirmation()
@@ -90,7 +100,10 @@ class UserResource extends Resource
                         ->title('Salvo com sucesso')
                         ->success()
                         ->send())
-                    ])->label('Opções'),
+                    */
+
+                    ])->label('Opções') , 
+                   
             ]);
     }
 
