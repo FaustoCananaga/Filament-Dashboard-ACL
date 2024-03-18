@@ -33,6 +33,11 @@ class AdminPanelProvider extends PanelProvider
             ->registration()
             ->passwordReset()
             ->emailVerification()
+            ->brandName('Gestão de Stock')
+            ->brandLogo(asset('images/governo-de-angola.png'))
+            ->darkModeBrandLogo(asset('images/logo-governo-ao.webp'))
+            ->brandLogoHeight(fn ()=> auth()->check() ? '3rem' : '6rem')
+            // ->favicon(asset('images/')
             //->profile()
             ->colors([
                 'primary' => 'rgb(103, 76, 196)',
