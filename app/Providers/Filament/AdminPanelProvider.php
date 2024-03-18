@@ -5,6 +5,8 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -17,6 +19,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use League\CommonMark\Extension\Mention\Mention;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -27,6 +30,10 @@ class AdminPanelProvider extends PanelProvider
             ->id('dashboard')
             ->path('dashboard')
             ->login()
+            ->registration()
+            ->passwordReset()
+            ->emailVerification()
+            //->profile()
             ->colors([
                 'primary' => 'rgb(103, 76, 196)',
             ])
@@ -34,6 +41,23 @@ class AdminPanelProvider extends PanelProvider
             ->font('Poppins')
            // ->sidebarCollapsibleOnDesktop()
            // ->fevicon('user_default.jpg')
+           //->breadcrumbs('false')
+           ->userMenuItems([
+            MenuItem::make()
+            ->label('Configurações')
+            ->url('')
+            ->icon('heroicon-o-cog-6-tooth'),
+
+            'logout'=> MenuItem::make()->label('Terminar Sessão')
+           ])
+           ->navigationItems(
+            [
+             NavigationItem::make('Blog')
+             ->icon('heroicon-o-pencil-square')
+             ->group('External')   
+             ->sort(2)
+            ]
+           )
            ->sidebarFullyCollapsibleOnDesktop()
 
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
