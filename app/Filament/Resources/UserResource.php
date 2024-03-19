@@ -9,6 +9,7 @@ use Filament\Actions\SelectAction;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -30,7 +31,7 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
     protected static ?string $navigationLabel ='Utilizador';
    // protected static ?int $navigationSort = 2;
-   // protected static ?string $navigationGroup ='External';
+    protected static ?string $navigationGroup ='Geral';
    // protected static ?string $recordTitleAttribute = 'name';
    
 
@@ -49,11 +50,20 @@ class UserResource extends Resource
                     TextInput::make('name')->autofocus()->required()->placeholder('Digite o seu nome')->label('Nome'),
 
                     TextInput::make('email')->email()->required()->placeholder('Digite o seu email'),
+                   
+                    Select::make('genero')
+                    ->options([
+                        'Masculino' => 'Masculino',
+                        'Feminino' => 'Feminino',
+                        'Outro' => 'Outro',
+                    ])->default('Masculino')->native(false)->label('Genero')->nullable(false),
 
                     
-                    FileUpload::make('imagem')->image()->placeholder('Carregar imagem...'),
+                    FileUpload::make('imagem')->image()->avatar()
+                    ->imageEditor()
+                    ->circleCropper()->placeholder('Carregar'),
 
-                    TextInput::make('password')->password()->required()->placeholder('Digite a Senha'),
+                    TextInput::make('password')->autocomplete('new-password')->label('Criar password')->password()->required()->placeholder('Digite a Senha'),
 
                     Toggle::make('activo')->default(true),
                 ])

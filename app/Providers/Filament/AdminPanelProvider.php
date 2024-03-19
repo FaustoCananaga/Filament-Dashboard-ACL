@@ -38,7 +38,7 @@ class AdminPanelProvider extends PanelProvider
             ->darkModeBrandLogo(asset('images/Logo-black.png'))
             ->brandLogoHeight(fn ()=> auth()->check() ? '2.2rem' : '3.2rem')
             ->favicon(asset('images/favicon.png'))
-            //->profile()
+            ->profile()
             ->colors([
                 'primary' => 'rgb(103, 76, 196)',
             ])
