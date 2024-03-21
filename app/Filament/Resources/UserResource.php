@@ -30,7 +30,7 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
     protected static ?string $navigationLabel ='Utilizador';
-   // protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 1;
     protected static ?string $navigationGroup ='Geral';
    // protected static ?string $recordTitleAttribute = 'name';
    
@@ -59,10 +59,16 @@ class UserResource extends Resource
                         'Outro' => 'Outro',
                     ])->default('Masculino')->native(false)->label('Genero')->nullable(false),
 
+                    Select::make('role')
+                    ->label('Pelfil')
+                    ->multiple()
+                    ->relationship('roles','name'),
                     
                     FileUpload::make('imagem')->image()->avatar()
                     ->imageEditor()
-                    ->circleCropper()->placeholder('Carregar'),
+                    ->circleCropper()->placeholder('Carregar')
+                   // ->hiddenOn('edit')
+                    ,
 
                   //  TextInput::make('password')->autocomplete('new-password')->label('Criar password')->password()->required()->placeholder('Digite a Senha'),
 

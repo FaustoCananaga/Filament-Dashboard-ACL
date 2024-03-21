@@ -36,7 +36,7 @@ class EditProfile extends BaseEditProfile
                     ->maxLength(255),
                */
                 $this->getNameFormComponent(),
-                $this->getEmailFormComponent(),
+                $this->getEmailFormComponent()->label('Email'),
                 $this->getImagemFormComponent(),
 
                 Select::make('genero')
@@ -47,8 +47,8 @@ class EditProfile extends BaseEditProfile
                 ])->default('Masculino')->native(false)->label('Genero')->nullable(false),
                 
                 Toggle::make('activo')->default(true),
-                $this->getPasswordFormComponent(),
-                $this->getPasswordConfirmationFormComponent(),
+                $this->getPasswordFormComponent()->label('Nova Senha'),
+                $this->getPasswordConfirmationFormComponent()->label('Confirmar Nova Senha'),
                    
                ])->label('Perfil')
 
