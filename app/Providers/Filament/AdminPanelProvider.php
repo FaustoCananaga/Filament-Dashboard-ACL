@@ -2,12 +2,14 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\EditProfile as AuthEditProfile;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\MenuItem;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
+use Filament\Pages\Auth\EditProfile;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -38,7 +40,7 @@ class AdminPanelProvider extends PanelProvider
             ->darkModeBrandLogo(asset('images/Logo-black.png'))
             ->brandLogoHeight(fn ()=> auth()->check() ? '2.2rem' : '3.2rem')
             ->favicon(asset('images/favicon.png'))
-            ->profile()
+            ->profile(AuthEditProfile::class)
             ->colors([
                 'primary' => 'rgb(103, 76, 196)',
             ])

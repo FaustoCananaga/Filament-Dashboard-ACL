@@ -37,6 +37,7 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    
     public static function form(Form $form): Form
     {
         return $form
@@ -63,7 +64,7 @@ class UserResource extends Resource
                     ->imageEditor()
                     ->circleCropper()->placeholder('Carregar'),
 
-                    TextInput::make('password')->autocomplete('new-password')->label('Criar password')->password()->required()->placeholder('Digite a Senha'),
+                  //  TextInput::make('password')->autocomplete('new-password')->label('Criar password')->password()->required()->placeholder('Digite a Senha'),
 
                     Toggle::make('activo')->default(true),
                 ])
@@ -92,9 +93,10 @@ class UserResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make()->label('Editar'),
-            ])
+            
+            //->actions([
+               // Tables\Actions\EditAction::make()->label('Editar'),
+           // ])
             ->bulkActions([ 
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()->label('Apagar Selecionados'),
