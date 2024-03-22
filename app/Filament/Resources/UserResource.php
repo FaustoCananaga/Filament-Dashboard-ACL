@@ -61,7 +61,7 @@ class UserResource extends Resource
 
                     Select::make('role')
                     ->label('Pelfil')
-                    ->multiple()
+                    
                     ->relationship('roles','name'),
                     
                     FileUpload::make('imagem')->image()->avatar()
@@ -70,7 +70,7 @@ class UserResource extends Resource
                    // ->hiddenOn('edit')
                     ,
 
-                  //  TextInput::make('password')->autocomplete('new-password')->label('Criar password')->password()->required()->placeholder('Digite a Senha'),
+                    TextInput::make('password')->autocomplete('new-password')->label('Criar password')->password()->required()->placeholder('Digite a Senha')->hiddenOn('edit'),
 
                     Toggle::make('activo')->default(true),
                 ])
@@ -94,20 +94,24 @@ class UserResource extends Resource
 
                 TextColumn::make('genero')->searchable()->sortable()->label('Genero'),
 
+                TextColumn::make('roles.name')->label('Perfil'),
+
                 IconColumn::make('activo')->boolean()->label('Status')
             ])
             ->filters([
                 //
             ])
             
-            //->actions([
-               // Tables\Actions\EditAction::make()->label('Editar'),
-           // ])
-            ->bulkActions([ 
+            ->actions([
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            ])
+            
+          
+                    /*  ->bulkActions([ 
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()->label('Apagar Selecionados'),
-
-                    /*  
+  
                     Tables\Actions\BulkAction::make('Desactivar')
                     ->color('warning')
                     ->requiresConfirmation()
@@ -118,11 +122,12 @@ class UserResource extends Resource
                         ->title('Salvo com sucesso')
                         ->success()
                         ->send())
-                    */
-
-                    ])->label('Opções') , 
                    
-            ]);
+
+                    ]) ,  
+                    */
+                   
+            ;
     }
 
     public static function getRelations(): array

@@ -9,6 +9,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Filament\Pages\Auth\EditProfile as BaseEditProfile;
+use Filament\Tables\Columns\TextColumn;
 
 class EditProfile extends BaseEditProfile
 {
@@ -45,6 +46,11 @@ class EditProfile extends BaseEditProfile
                     'Feminino' => 'Feminino',
                     'Outro' => 'Outro',
                 ])->default('Masculino')->native(false)->label('Genero')->nullable(false),
+
+                Select::make('role')
+                    ->label('Pelfil')
+                    
+                    ->relationship('roles','name')->disabled(),
                 
                 Toggle::make('activo')->default(true),
                 $this->getPasswordFormComponent()->label('Nova Senha'),
