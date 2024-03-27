@@ -76,11 +76,26 @@ composer install
 cp .env.example .env
 edite o arquivo .env conforme necessário para configurar o banco de dados, URL da aplicação e outras configurações específicas do ambiente
 
-4- GERE A CHAVE DA APLICAÇÃO
+4- CRIAR A BASE DE DADOS
+
+5- GERE A CHAVE DA APLICAÇÃO
 php artisan key:generate
 
-5- ADICIONE UMA IMAGEM PARA USER PADRÃO COM O NOME
+6- ADICIONE UMA IMAGEM PARA USER PADRÃO COM O NOME
 storage\app\public
 user_default.jpg
 
-6- ADICIONE AS IMAGENS DO LOGO 
+7- ADICIONE AS IMAGENS DO LOGO PARA O MODE BLACK, WHITE E O FIVICON
+EM public\images
+favicon.png
+Logo-white.png
+Logo-black.png
+
+8- EXECUTE AS MIGRAÇÕES DO BANCO DE DADOS
+php artisan migrate
+
+9- INICIE O SERVIDOR DE DESENVOLVIMENTO
+php artisan serve
+
+10- ACESSE A APLICAÇÃO
+{http://localhost:8000}/dashboard
