@@ -94,6 +94,12 @@ Logo-black.png
 8- EXECUTE AS MIGRAÇÕES DO BANCO DE DADOS
 php artisan migrate
 
+9- RODE AS MIGRATE E ENTRE COM AS SEGUINTES CREDENCIAIS
+php artisan db:seed
+
+email = superadmin@gmail.com
+senha = password
+
 9- INICIE O SERVIDOR DE DESENVOLVIMENTO
 php artisan serve
 
