@@ -64,3 +64,23 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## INSTALAÇÃO
+1- CLONE O PROJECTO EM SUA MAQUINA
+git clone https://github.com/FaustoCananaga/Filament-Dashboard-ACL.git
+
+2- INSTALE AS DEPENDÊNCIAS DO COMPOSER
+composer install
+
+3- CONFIGURE O AMBIENTE
+cp .env.example .env
+edite o arquivo .env conforme necessário para configurar o banco de dados, URL da aplicação e outras configurações específicas do ambiente
+
+4- GERE A CHAVE DA APLICAÇÃO
+php artisan key:generate
+
+5- ADICIONE UMA IMAGEM PARA USER PADRÃO COM O NOME
+storage\app\public
+user_default.jpg
+
+6- ADICIONE AS IMAGENS DO LOGO 
