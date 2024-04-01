@@ -64,3 +64,44 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## INSTALAÇÃO
+1- CLONE O PROJECTO EM SUA MAQUINA
+git clone https://github.com/FaustoCananaga/Filament-Dashboard-ACL.git
+
+2- INSTALE AS DEPENDÊNCIAS DO COMPOSER
+composer install
+
+3- CONFIGURE O AMBIENTE
+cp .env.example .env
+edite o arquivo .env conforme necessário para configurar o banco de dados, URL da aplicação e outras configurações específicas do ambiente
+
+4- CRIAR A BASE DE DADOS
+
+5- GERE A CHAVE DA APLICAÇÃO
+php artisan key:generate
+
+6- ADICIONE UMA IMAGEM PARA USER PADRÃO COM O NOME
+storage\app\public
+user_default.jpg
+
+7- ADICIONE AS IMAGENS DO LOGO PARA O MODE BLACK, WHITE E O FIVICON
+EM public\images
+favicon.png
+Logo-white.png
+Logo-black.png
+
+8- EXECUTE AS MIGRAÇÕES DO BANCO DE DADOS
+php artisan migrate
+
+9- RODE AS MIGRATE E ENTRE COM AS SEGUINTES CREDENCIAIS
+php artisan db:seed
+
+email = superadmin@gmail.com
+senha = superadmin
+
+9- INICIE O SERVIDOR DE DESENVOLVIMENTO
+php artisan serve
+
+10- ACESSE A APLICAÇÃO
+{http://localhost:8000}/dashboard
