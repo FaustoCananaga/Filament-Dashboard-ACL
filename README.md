@@ -98,7 +98,7 @@ php artisan migrate
 php artisan db:seed
 
 email = superadmin@gmail.com
-senha = password
+senha = superadmin
 
 9- INICIE O SERVIDOR DE DESENVOLVIMENTO
 php artisan serve
