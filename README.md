@@ -94,14 +94,20 @@ Logo-black.png
 8- EXECUTE AS MIGRAÇÕES DO BANCO DE DADOS
 php artisan migrate
 
-9- RODE AS MIGRATE E ENTRE COM AS SEGUINTES CREDENCIAIS
+9- Fazer o Link para abrir as imagens
+php artisan storage:link
+
+No arquivo .env altere o APP_URL 
+APP_URL=http://127.0.0.1:8000 (Seu Servidor)
+
+10- RODE AS MIGRATE E ENTRE COM AS SEGUINTES CREDENCIAIS
 php artisan db:seed
 
 email = superadmin@gmail.com
 senha = superadmin
 
-9- INICIE O SERVIDOR DE DESENVOLVIMENTO
+11- INICIE O SERVIDOR DE DESENVOLVIMENTO
 php artisan serve
 
-10- ACESSE A APLICAÇÃO
+12- ACESSE A APLICAÇÃO
 {http://localhost:8000}/dashboard

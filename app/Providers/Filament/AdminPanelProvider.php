@@ -57,14 +57,7 @@ class AdminPanelProvider extends PanelProvider
 
             'logout'=> MenuItem::make()->label('Terminar Sessão')
            ])
-           ->navigationItems(
-            [
-             NavigationItem::make('Blog')
-             ->icon('heroicon-o-pencil-square')
-             ->group('External')   
-             ->sort(2)
-            ]
-           )
+           
            ->sidebarFullyCollapsibleOnDesktop()
 
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
